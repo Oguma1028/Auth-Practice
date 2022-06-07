@@ -5,7 +5,7 @@ import {
   onAuthStateChanged,
 } from "firebase/auth";
 import { auth } from "./FirebaseConfig";
-import { Navigate } from "react-router-dom";
+import { Navigate, Link } from "react-router-dom";
 
 const Register = () => {
   const [registerEmail, setRegisterEmail] = useState("");
@@ -35,7 +35,7 @@ const Register = () => {
   return (
     <>
       {user ? (
-        <Navigate to={"/"} />
+        <Navigate to={`/`} />
       ) : (
         <>
           <h1>新規登録</h1>
@@ -59,6 +59,9 @@ const Register = () => {
               />
             </div>
             <button>登録する</button>
+            <p>
+              ログインは<Link to={`/login/`}>こちら</Link>
+            </p>
           </form>
         </>
       )}

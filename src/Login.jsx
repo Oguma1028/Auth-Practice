@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { signInWithEmailAndPassword, onAuthStateChanged } from "firebase/auth";
 import { auth } from "./FirebaseConfig";
-import { Navigate } from "react-router-dom";
-import { async } from "@firebase/util";
+import { Navigate, Link } from "react-router-dom";
 
 const Login = () => {
   const [loginEmail, setLoginEmail] = useState("");
@@ -29,7 +28,7 @@ const Login = () => {
   return (
     <>
       {user ? (
-        <Navigate to={"/"} />
+        <Navigate to={`/`} />
       ) : (
         <>
           <h1>ログインページ</h1>
@@ -55,6 +54,9 @@ const Login = () => {
               />
             </div>
             <button>ログイン</button>
+            <p>
+              新規登録は<Link to={`/register/`}>こちら</Link>
+            </p>
           </form>
         </>
       )}
