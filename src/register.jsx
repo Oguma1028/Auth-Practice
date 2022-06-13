@@ -1,13 +1,30 @@
 import React from "react";
 import { useState } from "react";
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { auth } from "./FirebaseConfig";
 
 const Register = () => {
   const [registerEmail, setRegisterEmail] = useState("");
   const [registerPassWord, setRegisterPassWord] = useState("");
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      await createUserWithEmailAndPassword(
+        auth,
+        registerEmail,
+        registerPassWord
+      );
+    } catch (error) {
+      alert("正しく入力してください");
+    }
+  };
+
   return (
     <>
       <h1>新規登録</h1>
-      <form>
+      <form onSubmit={handleSubmit}>
         <div>
           <label>メールアドレス</label>
           <input
